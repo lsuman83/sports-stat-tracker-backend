@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_20_083510) do
+ActiveRecord::Schema.define(version: 2021_03_21_211538) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,32 @@ ActiveRecord::Schema.define(version: 2021_03_20_083510) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "game_stats", force: :cascade do |t|
+    t.string "stat_name"
+    t.float "stat_value"
+    t.bigint "players_id", null: false
+    t.bigint "games_id", null: false
+    t.bigint "users_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["games_id"], name: "index_game_stats_on_games_id"
+    t.index ["players_id"], name: "index_game_stats_on_players_id"
+    t.index ["users_id"], name: "index_game_stats_on_users_id"
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.string "opponent"
+    t.date "date"
+    t.string "location"
+    t.boolean "win"
+    t.bigint "players_id", null: false
+    t.bigint "users_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["players_id"], name: "index_games_on_players_id"
+    t.index ["users_id"], name: "index_games_on_users_id"
+  end
+
   create_table "players", force: :cascade do |t|
     t.string "name"
     t.string "sport"
@@ -43,7 +69,8 @@ ActiveRecord::Schema.define(version: 2021_03_20_083510) do
     t.integer "jersey_number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.text "player_photo"
+    t.bigint "users_id", null: false
+    t.index ["users_id"], name: "index_players_on_users_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -59,4 +86,10 @@ ActiveRecord::Schema.define(version: 2021_03_20_083510) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "game_stats", "games", column: "games_id"
+  add_foreign_key "game_stats", "players", column: "players_id"
+  add_foreign_key "game_stats", "users", column: "users_id"
+  add_foreign_key "games", "players", column: "players_id"
+  add_foreign_key "games", "users", column: "users_id"
+  add_foreign_key "players", "users", column: "users_id"
 end

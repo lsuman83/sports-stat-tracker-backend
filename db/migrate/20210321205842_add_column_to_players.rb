@@ -1,5 +1,5 @@
 class AddColumnToPlayers < ActiveRecord::Migration[6.0]
   def change
-    add_column :players, :player_photo, :text
+    add_reference :players, :users, null: false, foreign_key: true
   end
 end
