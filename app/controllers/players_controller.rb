@@ -46,6 +46,6 @@ class PlayersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def player_params
-      params.require(:player).permit(:name, :sport, :position, :jersey_number)
+      params.require(:player).permit(:name, :sport, :position, :jersey_number, :player_pic)
     end
 end
