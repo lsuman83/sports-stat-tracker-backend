@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+team1 = Team.find_or_create_by(name: 'beachteam', location: 'ocala, fl', sport: 'softball', league_name: '14U')
+team2 = Team.find_or_create_by(name: 'hotshots', location: 'belleview, fl', sport: 'softball', league_name: '14U')
