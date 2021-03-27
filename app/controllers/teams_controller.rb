@@ -10,13 +10,17 @@ class TeamsController < ApplicationController
 
   # GET /teams/1
   def show
-    render json: @team
+    hash = TeamsSerializer.new(@team, include: [:players]).serializable_hash
+    render json: {
+        team: hash[:data][:attributes],
+        players: hash[:included].map{|player| player[:attributes]}
+    }
   end
 
   # POST /teams
   def create
     @team = Team.new(team_params)
-    
+  
     if @team.save
       render json: @team, status: :created, location: @team
     else
