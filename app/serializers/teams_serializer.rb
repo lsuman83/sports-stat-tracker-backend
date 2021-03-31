@@ -3,5 +3,5 @@ class TeamsSerializer
   attributes :id, :name, :location, :sport, :league_name
 
   has_many :players
-
+  has_many :games
 end

@@ -10,10 +10,11 @@ class TeamsController < ApplicationController
 
   # GET /teams/1
   def show
-    hash = TeamsSerializer.new(@team, include: [:players]).serializable_hash
+    hash = TeamsSerializer.new(@team, include: [:players, :games]).serializable_hash
     render json: {
         team: hash[:data][:attributes],
-        players: hash[:included].map{|player| player[:attributes]}
+        players: hash[:included].map{|player| player[:attributes]},
+        games: hash[:included].map{|game| game[:attributes]}
     }
   end
 

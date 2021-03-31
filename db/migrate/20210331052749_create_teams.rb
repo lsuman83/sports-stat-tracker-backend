@@ -5,8 +5,6 @@ class CreateTeams < ActiveRecord::Migration[6.0]
       t.string :location
       t.string :sport
       t.string :league_name
-
-      t.timestamps
     end
   end
 end
