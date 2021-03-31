@@ -50,6 +50,21 @@ rails db:migrate
 
 ***You must run rails db:create with postgresql in order to load your database into file structure
 
+Run 
+
+```
+rails s
+```
+
+to open this up on your local server unless you have the front end rails-client on your default local server then run
+
+```
+rails s -p ALTERNATE PORT NUMBER
+```
+
+in order to start the rails server on another host port 
+
+
 
 The remainder of this application was built using React at this repository
 
