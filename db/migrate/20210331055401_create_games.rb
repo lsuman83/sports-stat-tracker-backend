@@ -6,7 +6,7 @@ class CreateGames < ActiveRecord::Migration[6.0]
       t.string :location
       t.string :score
       t.string :win
-      t.reference :team, null: false, foreign_key: true
+      t.references :team, null: false, foreign_key: true
     end
   end
 end
