@@ -2,11 +2,11 @@
 
 Started the application by building the backend first. Created an API only rails application with a database setup using postgresql instead of the default SQLite by running
 
-``
+```
 rails new sports-stat-tracker-backend --api --database=postgresql -T
 
+```
 '-T' was to eliminate all tests that were built in.
-``
 
 Then, I configured Rack Middleware and adjust the cors files while adding the rack-cors dependenc which will assists with JSON Web token transfers.
 
