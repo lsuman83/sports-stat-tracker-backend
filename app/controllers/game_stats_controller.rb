@@ -1,6 +1,7 @@
 class GameStatsController < ApplicationController
   before_action :set_game_stat, only: [:show, :update, :destroy]
-
+  before_action :authenticate_user!
+  
   # GET /game_stats
   def index
     @game_stats = GameStat.all
